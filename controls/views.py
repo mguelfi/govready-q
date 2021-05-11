@@ -155,7 +155,7 @@ def controls_selected(request, system_id):
 
         # sort controls
         controls = list(controls)
-        controls.sort(key=lambda control: control.get_flattened_oscal_control_as_dict()['sort_id'])
+#        controls.sort(key=lambda control: control.get_flattened_oscal_control_as_dict()['sort_id'])
         # controls.sort(key = lambda control:list(reversed(control.get_flattened_oscal_control_as_dict()['sort_id'])))
 
         impl_smts_count = {}
@@ -176,6 +176,10 @@ def controls_selected(request, system_id):
             "system": system,
             "project": project,
             "controls": controls,
+            "classifications": [('official', 'Official'),
+                                ('protected', 'Protected'),
+                                ('secret', 'Secret'),
+                                ('top_secret', 'Top Secret')],
             "external_catalogs": external_catalogs,
             "impl_smts_count": impl_smts_count,
             "enable_experimental_opencontrol": SystemSettings.enable_experimental_opencontrol,
